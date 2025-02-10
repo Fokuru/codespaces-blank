@@ -61,9 +61,9 @@ public class SchChe {
         ArrayList<MeetingInterval> meet4 = new ArrayList<MeetingInterval>();
 		meet4.add(new MeetingInterval(100, 150));
         meet4.add(new MeetingInterval(50, 75));
-        meet4.add(new MeetingInterval(175, 300));
-        meet4.add(new MeetingInterval(400, 550));
         meet4.add(new MeetingInterval(600, 675));
+        meet4.add(new MeetingInterval(400, 550));
+        meet4.add(new MeetingInterval(175, 300));
 
 		System.out.println(canAttend(meet4) ? "There is no conflict with attending "+meet4+" meetings":"Can't attend "+meet4+" meetings due to conflict");
 
@@ -71,9 +71,9 @@ public class SchChe {
         ArrayList<MeetingInterval> meet5 = new ArrayList<MeetingInterval>();
         meet5.add(new MeetingInterval(100, 30));
         meet5.add(new MeetingInterval(50, 75));
-        meet5.add(new MeetingInterval(175, 300));
         meet5.add(new MeetingInterval(400, 550));
         meet5.add(new MeetingInterval(200, 675));
+        meet5.add(new MeetingInterval(175, 300));
 
         System.out.println(canAttend(meet5) ? "There is no conflict with attending "+meet5+" meetings":"Can't attend "+meet5+" meetings due to conflict");
 	}
