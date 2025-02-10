@@ -25,11 +25,9 @@ public class SchChe {
                 return false;
             }
         }
-		return true; //replace me with actual logic please!
+		return true; 
 	}
-
-    //precondition: 
-	//postcondition: 
+ 
 	public static void main(String[] args) {
 		ArrayList<MeetingInterval> meet = new ArrayList<MeetingInterval>();
 		for(int i =0; i<3; i++) {
