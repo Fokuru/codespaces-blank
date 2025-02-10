@@ -29,6 +29,7 @@ public class SchChe {
 	}
  
 	public static void main(String[] args) {
+        // Testing with small number
 		ArrayList<MeetingInterval> meet = new ArrayList<MeetingInterval>();
 		for(int i =0; i<3; i++) {
 			int start = (int)(Math.random()*2399);
@@ -38,6 +39,7 @@ public class SchChe {
 		System.out.println(canAttend(meet) ? "There is no conflict with attending "+meet+" meetings":"Can't attend "+meet+" meetings due to conflict");
 		//please include additional testing here!
 
+        // Up the number
         ArrayList<MeetingInterval> meet2 = new ArrayList<MeetingInterval>();
         for(int i =0; i<5; i++) {
 			int start = (int)(Math.random()*2399);
@@ -46,6 +48,7 @@ public class SchChe {
 		}
 		System.out.println(canAttend(meet2) ? "There is no conflict with attending "+meet2+" meetings":"Can't attend "+meet2+" meetings due to conflict");
 
+        // Up the number more
         ArrayList<MeetingInterval> meet3 = new ArrayList<MeetingInterval>();
         for(int i =0; i<10; i++) {
 			int start = (int)(Math.random()*2399);
@@ -54,6 +57,7 @@ public class SchChe {
 		}
 		System.out.println(canAttend(meet3) ? "There is no conflict with attending "+meet3+" meetings":"Can't attend "+meet3+" meetings due to conflict");
 
+        // Pre set so always true
         ArrayList<MeetingInterval> meet4 = new ArrayList<MeetingInterval>();
 		meet4.add(new MeetingInterval(100, 150));
         meet4.add(new MeetingInterval(50, 75));
@@ -62,6 +66,16 @@ public class SchChe {
         meet4.add(new MeetingInterval(600, 675));
 
 		System.out.println(canAttend(meet4) ? "There is no conflict with attending "+meet4+" meetings":"Can't attend "+meet4+" meetings due to conflict");
+
+        // Pre set so always false
+        ArrayList<MeetingInterval> meet5 = new ArrayList<MeetingInterval>();
+        meet5.add(new MeetingInterval(100, 30));
+        meet5.add(new MeetingInterval(50, 75));
+        meet5.add(new MeetingInterval(175, 300));
+        meet5.add(new MeetingInterval(400, 550));
+        meet5.add(new MeetingInterval(200, 675));
+
+        System.out.println(canAttend(meet5) ? "There is no conflict with attending "+meet5+" meetings":"Can't attend "+meet5+" meetings due to conflict");
 	}
 
 }
