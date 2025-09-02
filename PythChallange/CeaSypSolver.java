@@ -1,12 +1,15 @@
 //  Class author:  Raley
 //  Date created:  8/29/2025
 //  General description: This program is a Ceaser Cypher and takes a string and a number to tell it how far to move and then outputs the solved string. 
+//  The imputed text has to be enterly lowercase with no punctuation.
 public class CeaSypSolver {
     public static void main(String[] args) {
         // The imputed text should replace 'theText' 
         String theText = "g fmnc wms bgblr rpylqjyrc gr zw fylb. rfyrq ufyr amknsrcpq ypc dmp. bmgle gr gl zw fylb gq glcddgagclr ylb rfyr'q ufw rfgq rcvr gq qm jmle. sqgle qrpgle.kyicrpylq() gq pcamkkclbcb. lmu ynnjw ml rfc spj";
         // Call the cypher, imput the number to move by and then the text
-        System.out.println(moveLetter(-4, theText));
+        System.out.println(moveLetter(2, theText));
+        String test = "m pszi gexw";
+        System.out.println(moveLetter(-4, test));
     }
 
     public static String moveLetter(int moveNum, String imput){
