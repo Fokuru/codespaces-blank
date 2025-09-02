@@ -12,6 +12,11 @@ public class CeaSypSolver {
         System.out.println(moveLetter(-4, test));
     }
 
+    /*
+      Pre-condition: Imput a whole number (either pos or neg) and a String
+      Post-condition: Outputs the imputed string shiffted so that each letter 
+            is the imputed number away from its starting position.
+    */
     public static String moveLetter(int moveNum, String imput){
         // The alphabet 
         String firstAlph = "abcdefghijklmnopqrstuvwxyz";
