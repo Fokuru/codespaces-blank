@@ -1,4 +1,4 @@
-//  Class author:  Raley
+//  Class author:  Raley 
 //  Date created:  9/2/2024
 //  General description: This program takes in two strings and then removes all characters in the first from the second.
 
@@ -1254,51 +1254,71 @@ public class FindBodyGardsSolver {
                         "dCdFLtBQPtFQuCdKOrpndJNUFQIDSbetUKylhSUjcDVtbiQrWMRQhAwGUZyPneCGUjGBBTkLqxLAXXtB\r\n" + //
                         "KfErkDaWMFZZeuqDmXKJEGHyToPUhPphfVhgUZgbIuRAtWnroImpJKqqmEZqeNQCKzhjIkKQHURWLXFw\r\n" + //
                         "PBuijeoTSpsVLaOGuLVjMZXkBvVXwUuHfBihziiavGSYofPNeKsTXruMUumRRPQJzvSzJkKbtSipiqBd";
-
-        int aCapChar = 'A';
-        System.out.println(aCapChar);
-        int aLowChar = 'Z';
-        System.out.println(aLowChar);
-        int zCapChar = 'a';
-        System.out.println(zCapChar);
-        int zLowChar = 'z';
-        System.out.println(zLowChar);
-        char aCharCap = 90;
-        System.out.println(aCharCap);
-
-        System.out.println(ogText);
         System.out.println(removeCars(3,ogText));
+
+        /*String test = "This is ABCdEFG test because I can";
+        System.out.println(removeCars(3,test));
+
+        String test2 = "Now I'm testing ABCDEFGhIJKLMNOP because I can! :D";
+        System.out.println(removeCars(7,test2));
+
+        String test3 = "NOW I'M TESTING t BECAUSE I'M INTERESTED! :D";
+        System.out.println(removeCars(0,test3));
+
+        String test4 = "What if it doesn't exist?";
+        System.out.println(removeCars(3,test4)); */
 
     }
 
 
 
 
-    public static String removeCars(int bodyGardNumber, String imput){
-        String placeHolder = "";
-        for (int i = 0; i < imput.length()-1; i++){
-            int currentLetter = imput.charAt(i);
-            if (currentLetter==92) {
-                if (imput.substring(i+1, i+2).equals("r") || imput.substring(i+1, i+2).equals("n")){
+    public static String removeCars(int bodyGardNumber, String input){
+        String cleanInput = input.replace("\r", "").replace("\n", "");
+        int windowSize = bodyGardNumber*2+1+2;
 
+        for (int i = 0; i <= cleanInput.length()-windowSize; i++) {
+            String windowInput = cleanInput.substring(i, i+windowSize);
+            boolean matches = true;
+
+
+            if (matches && !Character.isLowerCase(windowInput.charAt(0))) {
+                matches = false;
+                break;
+            } 
+
+            for (int j = 1; j < bodyGardNumber; j++){
+                if (!Character.isUpperCase(windowInput.charAt(j))){
+                matches = false;
+                break;
                 }
-            } else {
-                char leLetter = imput.charAt(i);
-                placeHolder = placeHolder + leLetter;
             }
+
+            if (matches && !Character.isLowerCase(windowInput.charAt(bodyGardNumber+1))) {
+            matches = false;
+            }
+
+            for (int j = bodyGardNumber + 2; matches && j < windowSize; j++) {
+                if (!Character.isUpperCase(windowInput.charAt(j))) {
+                    matches = false;
+                    break;
+                }
+            }
+
+            if (matches && !Character.isLowerCase(windowInput.charAt(windowSize-1))) {
+                matches = false;
+                break;
+            } 
+
+            if (matches) { 
+                return windowInput;
+            }
+
+            
+
+            
         }
 
-
-
-        
-
-        String output = "";
-        output = placeHolder;
-
-
-
-
-
-        return output;
+        return "Not Possible";
     }
 }
