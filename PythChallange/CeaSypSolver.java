@@ -1,4 +1,4 @@
-//  Class author:  Raley
+//  Class author:  Raley Wilkin
 //  Date created:  8/29/2025
 //  General description: This program is a Ceaser Cypher and takes a string and a number to tell it how far to move and then outputs the solved string. 
 //  The imputed text has to be enterly lowercase with no punctuation.

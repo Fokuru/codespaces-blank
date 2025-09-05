@@ -1,6 +1,9 @@
-//  Class author:  Raley 
-//  Date created:  9/2/2024
-//  General description: This program takes in two strings and then removes all characters in the first from the second.
+//  Class author:  Raley Wilkin
+//  Date created:  9/4/2025
+//  General description: This program takes in a string and an int and then finds all places where there is
+//  a lowercase letter with a certain number of uppercase letters on either side (with lower cases surrounding 
+//  that), and returns the string that is made up of those lowercase letters. If no such letters exist, it returns
+//  "No hidden message found."
 
 public class FindBodyGardsSolver {
     public static void main(String[] args) {
@@ -1254,71 +1257,61 @@ public class FindBodyGardsSolver {
                         "dCdFLtBQPtFQuCdKOrpndJNUFQIDSbetUKylhSUjcDVtbiQrWMRQhAwGUZyPneCGUjGBBTkLqxLAXXtB\r\n" + //
                         "KfErkDaWMFZZeuqDmXKJEGHyToPUhPphfVhgUZgbIuRAtWnroImpJKqqmEZqeNQCKzhjIkKQHURWLXFw\r\n" + //
                         "PBuijeoTSpsVLaOGuLVjMZXkBvVXwUuHfBihziiavGSYofPNeKsTXruMUumRRPQJzvSzJkKbtSipiqBd";
-        System.out.println(removeCars(3,ogText));
+        System.out.println(findHiddenString(3,ogText));
 
-        /*String test = "This is ABCdEFG test because I can";
-        System.out.println(removeCars(3,test));
+        String test = "This is aABCdEFGb test because I can";
+        System.out.println(findHiddenString(3,test));
 
-        String test2 = "Now I'm testing ABCDEFGhIJKLMNOP because I can! :D";
-        System.out.println(removeCars(7,test2));
+        String test2 = "Now I'm testing lABCDEFGhIJKLMNOu because I can! :D";
+        System.out.println(findHiddenString(7,test2));
 
-        String test3 = "NOW I'M TESTING t BECAUSE I'M INTERESTED! :D";
-        System.out.println(removeCars(0,test3));
+        String test3 = "NOW I'M TESTING ttt BECAUSE I'M INTERESTED! :D";
+        System.out.println(findHiddenString(0,test3));
 
         String test4 = "What if it doesn't exist?";
-        System.out.println(removeCars(3,test4)); */
+        System.out.println(findHiddenString(3,test4)); 
+
+        // What if it really doesn't exist?
+        String test5 = "";
+        System.out.println(findHiddenString(3,test5)); 
+
+        String test6 = "DAKFSOEFJSlEOFiFJSlOEFSOJOkOJFaKDOlKFOKSOEKFOKSEOFKiADOmFKOl \r \n" + 
+                       "FJSIFlswdOSAOJFoALKhALKvOWADOJAWODOlKOSaEJOeOAKODKOWiOKWiOKO \r \n" +
+                       "iFJSlOEFSjKOSvELSoOJOkOJFiKDOlKFlOAOnOSKwOKSOFiSOEgOSKlfOKSe \r \n" +
+                       "PsOAWfOKDrOAiOAIuOKAwOKOKSFOKSOpOAKnWLAhADAWKODKiaAsOKSadoks"; 
+        System.out.println(findHiddenString(3,test6) + " :D"); 
 
     }
 
 
-
-
-    public static String removeCars(int bodyGardNumber, String input){
+    /*
+      Pre-condition: Imput one int and one string. The int must be 0 or greater.
+      Post-condition: Finds all places where there is a lowercase letter with a certain number
+       of uppercase letters on either side (with lower cases surrounding that), and returns the
+       string that is made up of those lowercase letters. If no such letters exist, it returns
+       "No hidden message found."
+    */
+    public static String findHiddenString(int bodyGardNumber, String input){
+        // Makes a string without new lines or returns from the input
         String cleanInput = input.replace("\r", "").replace("\n", "");
-        int windowSize = bodyGardNumber*2+1+2;
-
-        for (int i = 0; i <= cleanInput.length()-windowSize; i++) {
-            String windowInput = cleanInput.substring(i, i+windowSize);
-            boolean matches = true;
-
-
-            if (matches && !Character.isLowerCase(windowInput.charAt(0))) {
-                matches = false;
-                break;
-            } 
-
-            for (int j = 1; j < bodyGardNumber; j++){
-                if (!Character.isUpperCase(windowInput.charAt(j))){
-                matches = false;
-                break;
-                }
-            }
-
-            if (matches && !Character.isLowerCase(windowInput.charAt(bodyGardNumber+1))) {
-            matches = false;
-            }
-
-            for (int j = bodyGardNumber + 2; matches && j < windowSize; j++) {
-                if (!Character.isUpperCase(windowInput.charAt(j))) {
-                    matches = false;
-                    break;
-                }
-            }
-
-            if (matches && !Character.isLowerCase(windowInput.charAt(windowSize-1))) {
-                matches = false;
-                break;
-            } 
-
-            if (matches) { 
-                return windowInput;
-            }
-
-            
-
-            
+        // Sets the pattern to search for
+        String pattern = "[a-z]([A-Z]{" + bodyGardNumber + "}[a-z][A-Z]{" + bodyGardNumber + "})[a-z]";
+        // Sets up the regex objects
+        java.util.regex.Pattern r = java.util.regex.Pattern.compile(pattern);
+        // Runs the matcher on the cleaned input
+        java.util.regex.Matcher m = r.matcher(cleanInput);
+        // Builds the output string
+        StringBuilder output = new StringBuilder();
+        // Finds all matches and adds the lowercase letter to the output
+        while (m.find()) {
+            output.append(cleanInput.charAt(m.start() + bodyGardNumber + 1));
         }
 
-        return "Not Possible";
+        // If no matches were found, return a message saying so
+        if (output.length() == 0) {
+            return "No hidden message found.";
+        }
+        // Otherwise, return the output string
+        return output.toString();
     }
 }

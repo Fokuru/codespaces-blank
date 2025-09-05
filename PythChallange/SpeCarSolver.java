@@ -1,5 +1,5 @@
-//  Class author:  Raley   
-//  Date created:  9/2/2024  
+//  Class author:  Raley Wilkin  
+//  Date created:  9/2/2025  
 //  General description: This program takes in two strings and then removes all characters in the first from the second. 
 
 public class SpeCarSolver {
