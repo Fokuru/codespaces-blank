@@ -5,6 +5,9 @@
 //  that), and returns the string that is made up of those lowercase letters. If no such letters exist, it returns
 //  "No hidden message found."
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class FindBodyGardsSolver {
     public static void main(String[] args) {
         String ogText = "kAewtloYgcFQaJNhHVGxXDiQmzjfcpYbzxlWrVcqsmUbCunkfxZWDZjUZMiGqhRRiUvGmYmvnJIHEmbT\r\n" + //
@@ -1297,9 +1300,9 @@ public class FindBodyGardsSolver {
         // Sets the pattern to search for
         String pattern = "[a-z]([A-Z]{" + bodyGardNumber + "}[a-z][A-Z]{" + bodyGardNumber + "})[a-z]";
         // Sets up the regex objects
-        java.util.regex.Pattern r = java.util.regex.Pattern.compile(pattern);
+        Pattern r = Pattern.compile(pattern);
         // Runs the matcher on the cleaned input
-        java.util.regex.Matcher m = r.matcher(cleanInput);
+        Matcher m = r.matcher(cleanInput);
         // Builds the output string
         StringBuilder output = new StringBuilder();
         // Finds all matches and adds the lowercase letter to the output
